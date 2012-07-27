@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Askme</title>
+   <meta charset="UTF-8">
+    <title>Overseer</title>
     <link rel="shortcut icon" href="http://<%= request.env["HTTP_HOST"] %>/favicon.ico" />
+    <style type="text/css" media="all">
+      @import "/stylesheets/style.css";
+    </style>
+    <script type="text/javascript" language="javascript" src="/javascripts/jquery.js"></script>
   </head>  
   <body>
-    <%= yield %>
+	<div id="page">
+		<div id="header">
+			<h1>
+        Overseer
+
+        <small>(<%= ENV['RACK_ENV'] %>) - <a href="/change_log">version: <%= APP_VERSION_GIT.version %> @ <%= APP_VERSION_GIT.changelog.first[:date].strftime("%H:%M %d.%m.%Y") %></a></small>
+      </h1>
+		</div>
+		<div id="nav">
+			<ul>
+				<li><a href="/" <%= 'class="active"' if true %>>STARED</a></li>
+				<li><a href="/browse" <%= 'class="active"' if false %>>BROWSE</a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div id="content">
+
+			<%= yield %>
+			<div class="clear"></div>
+		</div>
+	</div>
   </body>
 </html>

@@ -1,4 +1,4 @@
 # -*- encoding : utf-8 -*-
-class AskmeSinatra < Sinatra::Base
+class OverseerSinatra < Sinatra::Base
   
 end

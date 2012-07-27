@@ -16,9 +16,11 @@ require 'active_support/core_ext/class/inheritable_attributes'
 require 'date'
 require 'logger'
 
-require 'mail'
-
 ENV['RACK_ENV'] ||= "development"
+
+#version by git commits + changelog
+require 'app-version-git'
+APP_VERSION_GIT = AppVersion.new(__FILE__)
 
 #including lib
 Dir[File.join(File.dirname(__FILE__),"/lib/*.rb")].each {|file| require file }

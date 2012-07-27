@@ -5,8 +5,7 @@ Gemfile.lock
 
 redis.conf
 
-config/redis_config.yml
-config/elastic_config.yml
+config/*.example
 
 .DS_Store
 
@@ -19,5 +18,3 @@ sandbox*.rb
 
 tmp/*
 log/*
-log/test.log
-

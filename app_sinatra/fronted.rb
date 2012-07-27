@@ -1,10 +1,16 @@
 # -*- encoding : utf-8 -*-
-class AskmeSinatra < Sinatra::Base
+class OverseerSinatra < Sinatra::Base
   
   get '/is_alive' do
-    content_type :json
-    output = {:status => "ok", :message => "Oh yeah Baby! Miner Sklik is alive :-)", :executed_at => Time.now.strftime("%Y-%m-%d %H:%M:%S") }
-    return JSON.pretty_generate(output)
+    render_output :hello_message, "Oh yeah Baby! Overseer is alive :-)"
+  end
+
+  get '/change_log' do
+    erb :change_log
+  end
+
+  get '/change_log.json' do
+    render_output :changelog, {:version => APP_VERSION_GIT.version, :logs => APP_VERSION_GIT.changelog}
   end
 
   get '/' do

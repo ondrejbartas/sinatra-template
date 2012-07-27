@@ -11,7 +11,24 @@ def get_or_post(path, opts={}, &block)
   post(path, opts, &block)
 end  
 
-class AskmeSinatra < Sinatra::Base
+#Method for generating standart looking output
+def render_output name = nil, items = nil
+  content_type :json
+
+  #compose output JSON
+  output = {:status => "ok", :executed_at => Time.now.strftime("%Y-%m-%d %H:%M:%S"), :message => "ok"}
+  
+  #items and name specified
+  return JSON.pretty_generate(output.merge({ name => items })) if name && items
+
+  #name specified
+  return JSON.pretty_generate(output.merge({ :output => name })) if name
+
+  #only response with ok message
+  return JSON.pretty_generate(output)
+end
+
+class OverseerSinatra < Sinatra::Base
   set :views, File.dirname(__FILE__) + '/app_sinatra/views'
   set :show_exceptions, false
     

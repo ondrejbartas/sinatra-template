@@ -30,3 +30,7 @@ end
 gem "rake"
 gem "rack", "~> 1.3.0"
 gem "tilt", "~> 1.3.2"
+
+# add small gem to show on frontend version of application
+gem "app-version-git"
+
