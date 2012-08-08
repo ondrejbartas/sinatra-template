@@ -3,13 +3,26 @@ require 'sinatra'
 require 'sinatra/base'
 require 'erb'
 
-#including Sinatra methods
-Dir[File.join(File.dirname(__FILE__),"/app_sinatra/*.rb")].each {|file| require file }
+require 'cpu-memory-stats'
 
 def get_or_post(path, opts={}, &block)
   get(path, opts, &block)
   post(path, opts, &block)
 end  
+
+#Method for generating standart looking output
+def render_output item = nil
+  content_type :json
+
+  #compose output JSON
+  output = {:status => "ok", :executed_at => Time.now.strftime("%Y-%m-%d %H:%M:%S"), :message => "ok"}
+  
+  #item is specifed
+  return JSON.pretty_generate(output.merge(item)) if item
+
+  #only response with ok message
+  return JSON.pretty_generate(output)
+end
 
 class AskmeSinatra < Sinatra::Base
   set :views, File.dirname(__FILE__) + '/app_sinatra/views'
@@ -32,3 +45,6 @@ class AskmeSinatra < Sinatra::Base
   end
   
 end
+
+#including Sinatra methods
+Dir[File.join(File.dirname(__FILE__),"/app_sinatra/*.rb")].each {|file| require file }

@@ -9,3 +9,6 @@ require 'shoulda-context'
 
 require 'bundler'
 Bundler.setup
+
+require './askme_app'
+require './askme_sinatra'

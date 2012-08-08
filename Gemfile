@@ -12,8 +12,6 @@ gem "redis"
 gem "rainbows"
 gem "sinatra", "~> 1.2.6"
 
-gem "mail"
-
 group :test do
   gem "rack-test"
   gem 'shoulda-context'
@@ -30,3 +28,9 @@ end
 gem "rake"
 gem "rack", "~> 1.3.0"
 gem "tilt", "~> 1.3.2"
+
+# add small gem to show on frontend version of application
+gem "app-version-git"
+
+# add small gem to show cpu and memory usage
+gem "cpu-memory-stats"
